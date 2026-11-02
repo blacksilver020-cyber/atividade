@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="AppHotel.MainPage"
+             Title="Reservar"
+             BackgroundColor="{StaticResource Soft}">
+    <ScrollView>
+        <VerticalStackLayout Padding="22" Spacing="18">
+            <Grid ColumnDefinitions="*,Auto" ColumnSpacing="12">
+                <VerticalStackLayout Spacing="3" VerticalOptions="Center">
+                    <Label Text="APP HOTEL" FontSize="13" CharacterSpacing="2"
+                           TextColor="{StaticResource Blue}" FontAttributes="Bold"/>
+                    <Label Text="Sua estadia começa aqui"
+                           FontSize="25" FontAttributes="Bold"
+                           TextColor="{StaticResource Navy}"/>
+                    <Label Text="Conforto, praticidade e tranquilidade."
+                           FontSize="13" TextColor="#607486"/>
+                </VerticalStackLayout>
+                <Border Grid.Column="1" BackgroundColor="{StaticResource Navy}"
+                        StrokeThickness="0" Padding="13" StrokeShape="RoundRectangle 18"
+                        VerticalOptions="Center">
+                    <Label Text="✦" FontSize="30" TextColor="{StaticResource Gold}"/>
+                </Border>
+            </Grid>
+
+            <Border StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="White" Padding="0">
+                <VerticalStackLayout Spacing="0">
+                    <Image Source="hotel_banner.svg" HeightRequest="145"
+                           Aspect="AspectFill"/>
+                    <VerticalStackLayout Padding="16" Spacing="5">
+                        <Label Text="Bem-vindo ao App Hotel" FontSize="19"
+                               FontAttributes="Bold" TextColor="{StaticResource Navy}"/>
+                        <Label Text="Organize sua próxima hospedagem preenchendo os dados abaixo."
+                               FontSize="13" TextColor="#607486"/>
+                    </VerticalStackLayout>
+                </VerticalStackLayout>
+            </Border>
+
+            <Border StrokeThickness="0" StrokeShape="RoundRectangle 20"
+                    BackgroundColor="White" Padding="18">
+                <VerticalStackLayout Spacing="14">
+                    <Label Text="Solicitar reserva" FontSize="20"
+                           FontAttributes="Bold" TextColor="{StaticResource Navy}"/>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Nome do hóspede" FontAttributes="Bold"
+                               TextColor="{StaticResource Ink}" FontSize="13"/>
+                        <Entry Placeholder="Digite seu nome"
+                               Text="{Binding GuestName, Mode=TwoWay}"
+                               BackgroundColor="{StaticResource Soft}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Tipo de acomodação" FontAttributes="Bold"
+                               TextColor="{StaticResource Ink}" FontSize="13"/>
+                        <Picker Title="Selecione uma opção"
+                                ItemsSource="{Binding RoomTypes}"
+                                SelectedItem="{Binding RoomType, Mode=TwoWay}"
+                                TextColor="{StaticResource Ink}"/>
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="5">
+                        <Label Text="Data de entrada" FontAttributes="Bold"
+                               TextColor="{StaticResource Ink}" FontSize="13"/>
+                        <DatePicker Date="{Binding CheckIn, Mode=TwoWay}"
+                                    Format="dd/MM/yyyy"
+                                    MinimumDate="{Binding MinimumDate}"/>
+                    </VerticalStackLayout>
+
+                    <Grid ColumnDefinitions="*,Auto" VerticalOptions="Center">
+                        <VerticalStackLayout Spacing="3">
+                            <Label Text="Quantidade de hóspedes" FontAttributes="Bold"
+                                   TextColor="{StaticResource Ink}" FontSize="13"/>
+                            <Label Text="{Binding Guests, StringFormat='{0:0} hóspede(s)'}"
+                                   TextColor="#607486" FontSize="13"/>
+                        </VerticalStackLayout>
+                        <Stepper Grid.Column="1" Minimum="1" Maximum="6" Increment="1"
+                                 Value="{Binding Guests, Mode=TwoWay}" />
+                    </Grid>
+
+                    <Button Text="Solicitar reserva" Clicked="OnReserveClicked"
+                            BackgroundColor="{StaticResource Blue}" TextColor="White"
+                            FontAttributes="Bold" CornerRadius="14" HeightRequest="52"/>
+                    <Label Text="{Binding Status}" FontSize="12"
+                           TextColor="{StaticResource Blue}"/>
+                </VerticalStackLayout>
+            </Border>
+
+            <Label Text="App Hotel • Projeto acadêmico — Programação Mobile I"
+                   FontSize="11" TextColor="#8293A0" HorizontalTextAlignment="Center"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
